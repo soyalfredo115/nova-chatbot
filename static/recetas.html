@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Recetas • Nova Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+  <meta name="color-scheme" content="dark light" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="/" class="logo" style="text-decoration:none">🏋️‍♀️</a>
+        <span class="title">Nova Fitness</span>
+      </div>
+      <nav class="nav">
+        <a href="/static/programas.html">Programas</a>
+        <a href="/static/recetas.html">Recetas</a>
+        <a href="/static/rutinas.html">Rutinas</a>
+        <a href="/static/tablas.html">Tablas</a>
+        <a href="/static/calculadoras.html">Calculadoras</a>
+        <a href="/static/blog.html">Blog</a>
+        <a href="/static/clases.html">Clases</a>
+        <a href="/static/faq.html">FAQ</a>
+        <a href="/static/contacto.html">Contacto</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" title="Cambiar tema">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Recetas saludables</h1>
+        <p>Filtra por categoría y encuentra opciones rápidas y balanceadas.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="searchbar">
+          <input id="recipeSearch" type="search" placeholder="Buscar por nombre o descripción..." />
+        </div>
+        <div class="chips" id="recipeFilters">
+          <button class="chip active" data-filter="all">Todas</button>
+          <button class="chip" data-filter="desayuno">Desayuno</button>
+          <button class="chip" data-filter="almuerzo">Almuerzo</button>
+          <button class="chip" data-filter="cena">Cena</button>
+          <button class="chip" data-filter="snack">Snack</button>
+        </div>
+
+        <div class="grid recipes">
+          <article class="recipe-card" data-category="desayuno">
+            <h3>Overnight oats</h3>
+            <p>Avena con yogur, leche y frutos rojos. Reposo nocturno.</p>
+            <div class="badges"><span>30g proteína</span><span>Alto en fibra</span></div>
+          </article>
+          <article class="recipe-card" data-category="desayuno">
+            <h3>Tostada integral con huevo</h3>
+            <p>Pan integral, huevo a la plancha, tomate y espinacas.</p>
+            <div class="badges"><span>Proteína</span><span>15 min</span></div>
+          </article>
+          <article class="recipe-card" data-category="snack">
+            <h3>Yogur con nueces</h3>
+            <p>Yogur natural, nueces, miel y canela. Sencillo.</p>
+            <div class="badges"><span>Rápido</span><span>5 min</span></div>
+          </article>
+          <article class="recipe-card" data-category="almuerzo">
+            <h3>Bowl de pollo y quinoa</h3>
+            <p>Pollo, quinoa, aguacate, verduras. Aliño de limón.</p>
+            <div class="badges"><span>35g proteína</span><span>Gluten‑free</span></div>
+          </article>
+          <article class="recipe-card" data-category="almuerzo">
+            <h3>Tacos de pavo</h3>
+            <p>Tortillas de maíz, pavo, pico de gallo y lima.</p>
+            <div class="badges"><span>Alto en proteína</span><span>Sin fritura</span></div>
+          </article>
+          <article class="recipe-card" data-category="almuerzo">
+            <h3>Ensalada de garbanzos</h3>
+            <p>Garbanzos, pepino, tomate, cebolla roja y feta.</p>
+            <div class="badges"><span>Fibra</span><span>Vegetariana</span></div>
+          </article>
+          <article class="recipe-card" data-category="cena">
+            <h3>Salmón con verduras</h3>
+            <p>Con brócoli y zanahoria. Patata asada opcional.</p>
+            <div class="badges"><span>Omega‑3</span><span>Low‑carb</span></div>
+          </article>
+          <article class="recipe-card" data-category="cena">
+            <h3>Tofu salteado</h3>
+            <p>Salsa de soja baja en sodio y verduras. Arroz integral.</p>
+            <div class="badges"><span>Vegano</span><span>15 min</span></div>
+          </article>
+          <article class="recipe-card" data-category="cena">
+            <h3>Merluza al horno</h3>
+            <p>Con limón, ajo y perejil. Guarnición de verduras.</p>
+            <div class="badges"><span>Ligera</span><span>Alta en proteína</span></div>
+          </article>
+          <article class="recipe-card" data-category="snack">
+            <h3>Batido de frutas y whey</h3>
+            <p>Plátano, frutos rojos, leche o bebida vegetal, proteína.</p>
+            <div class="badges"><span>Shake</span><span>Proteico</span></div>
+          </article>
+          <article class="recipe-card" data-category="desayuno">
+            <h3>Tortita de avena</h3>
+            <p>Avena, huevo y canela. Acompaña con fruta.</p>
+            <div class="badges"><span>Rápido</span><span>Económico</span></div>
+          </article>
+          <article class="recipe-card" data-category="almuerzo">
+            <h3>Pasta integral con atún</h3>
+            <p>Tomate natural, albahaca y aceite de oliva.</p>
+            <div class="badges"><span>Balanceado</span><span>20 min</span></div>
+          </article>
+          <article class="recipe-card" data-category="desayuno">
+            <h3>Chía pudding</h3>
+            <p>Semillas de chía con leche y fruta. Fibra y saciedad.</p>
+            <div class="badges"><span>Fibra</span><span>Vegano</span></div>
+          </article>
+          <article class="recipe-card" data-category="almuerzo">
+            <h3>Arroz integral con verduras</h3>
+            <p>Salteado de verduras variadas con salsa ligera de soja.</p>
+            <div class="badges"><span>Fácil</span><span>Económico</span></div>
+          </article>
+          <article class="recipe-card" data-category="cena">
+            <h3>Crema de calabaza</h3>
+            <p>Suave y ligera, con topping de pipas y yogur.</p>
+            <div class="badges"><span>Ligera</span><span>Vegetariana</span></div>
+          </article>
+          <article class="recipe-card" data-category="snack">
+            <h3>Hummus con palitos</h3>
+            <p>Clásico hummus con zanahoria y apio.</p>
+            <div class="badges"><span>Proteína vegetal</span><span>10 min</span></div>
+          </article>
+          <article class="recipe-card" data-category="cena">
+            <h3>Revuelto de claras y verduras</h3>
+            <p>Claras con espinacas, champiñón y tomate.</p>
+            <div class="badges"><span>Alta proteína</span><span>Bajo en grasa</span></div>
+          </article>
+          <article class="recipe-card" data-category="almuerzo">
+            <h3>Wrap integral de atún</h3>
+            <p>Atún, yogur griego, lechuga y maíz en tortilla integral.</p>
+            <div class="badges"><span>Rápido</span><span>Balanceado</span></div>
+          </article>
+          <article class="recipe-card" data-category="desayuno">
+            <h3>Batido verde</h3>
+            <p>Espinaca, manzana, pepino y yogur.</p>
+            <div class="badges"><span>Fresco</span><span>Vitaminas</span></div>
+          </article>
+        </div>
+
+        <div id="recipePager" class="pager"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>Nova Fitness no ofrece consejo médico.</small>
+    </div>
+  </footer>
+
+  <button id="chatToggle" class="chatbot-toggle" title="Abrir chat">💬</button>
+  <div id="chatPanel" class="chatbot-panel">
+    <div class="chat-header">
+      <strong>Nova • Coach Fitness</strong>
+      <div class="spacer"></div>
+      <button id="resetBtn" class="small" title="Reiniciar">↺</button>
+      <button id="chatClose" class="small" title="Cerrar">✕</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <form id="form" class="chat-form">
+      <textarea id="input" placeholder="Cuéntame tu objetivo, nivel y equipo..." rows="2"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

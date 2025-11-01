@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Tablas • Nova Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="/" class="logo" style="text-decoration:none">🏋️‍♀️</a>
+        <span class="title">Nova Fitness</span>
+      </div>
+      <nav class="nav">
+        <a href="/static/programas.html">Programas</a>
+        <a href="/static/recetas.html">Recetas</a>
+        <a href="/static/rutinas.html">Rutinas</a>
+        <a href="/static/tablas.html">Tablas</a>
+        <a href="/static/calculadoras.html">Calculadoras</a>
+        <a href="/static/blog.html">Blog</a>
+        <a href="/static/clases.html">Clases</a>
+        <a href="/static/faq.html">FAQ</a>
+        <a href="/static/contacto.html">Contacto</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" title="Cambiar tema">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Tablas útiles</h1>
+        <p>RPE y guía rápida de macronutrientes e hidratación.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid two">
+        <div class="card">
+          <h3>Escala RPE</h3>
+          <table class="table compact">
+            <tbody>
+              <tr><td>6</td><td>4 repeticiones en recámara</td></tr>
+              <tr><td>7</td><td>3 repeticiones en recámara</td></tr>
+              <tr><td>8</td><td>2 repeticiones en recámara</td></tr>
+              <tr><td>9</td><td>1 repetición en recámara</td></tr>
+              <tr><td>10</td><td>Esfuerzo máximo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Guía rápida de macros</h3>
+          <table class="table compact">
+            <tbody>
+              <tr><td>Proteína</td><td>1.6–2.2 g/kg/día</td></tr>
+              <tr><td>Grasas</td><td>0.6–1.0 g/kg/día</td></tr>
+              <tr><td>Carbohidratos</td><td>Resto según objetivo</td></tr>
+              <tr><td>Hidratación</td><td>~35 ml/kg/día</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><small>Nova Fitness</small></div></footer>
+
+  <button id="chatToggle" class="chatbot-toggle" title="Abrir chat">💬</button>
+  <div id="chatPanel" class="chatbot-panel">
+    <div class="chat-header">
+      <strong>Nova • Coach Fitness</strong>
+      <div class="spacer"></div>
+      <button id="resetBtn" class="small" title="Reiniciar">↺</button>
+      <button id="chatClose" class="small" title="Cerrar">✕</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <form id="form" class="chat-form">
+      <textarea id="input" placeholder="Cuéntame tu objetivo, nivel y equipo..." rows="2"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

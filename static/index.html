@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Nova Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%231E88E5'/%3E%3Ctext x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial, sans-serif'%3EN%3C/text%3E%3C/svg%3E" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0f1115" />
+  <meta name="description" content="Chatbot local con FastAPI y Groq" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo">🏋️‍♀️</span>
+        <span class="title">Nova Fitness</span>
+      </div>
+      <nav class="nav">
+        <a href="/static/programas.html">Programas</a>
+        <a href="/static/recetas.html">Recetas</a>
+        <a href="/static/rutinas.html">Rutinas</a>
+        <a href="/static/tablas.html">Tablas</a>
+        <a href="/static/calculadoras.html">Calculadoras</a>
+        <a href="/static/blog.html">Blog</a>
+        <a href="/static/clases.html">Clases</a>
+        <a href="/static/faq.html">FAQ</a>
+        <a href="/static/contacto.html">Contacto</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" title="Cambiar tema">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1>Tu coach de fitness impulsado por IA</h1>
+          <p>Planes personalizados, rutinas claras y consejos de nutrición para alcanzar tus objetivos de forma segura.</p>
+          <div class="hero-ctas">
+            <button id="startChatBtn" class="cta">Habla con tu coach</button>
+            <a class="link" href="/static/recetas.html">Ver recetas →</a>
+          </div>
+          <div class="hero-metrics">
+            <div><strong>2000+</strong><span>planes generados</span></div>
+            <div><strong>95%</strong><span>satisfacción</span></div>
+            <div><strong>24/7</strong><span>disponible</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1080&q=80" alt="Entrenamiento funcional" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Secciones destacadas -->
+    <section class="section">
+      <div class="container">
+        <h2>Explora</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Recetas saludables</h3>
+            <p class="muted">Ideas rápidas y balanceadas para tu objetivo.</p>
+            <div class="grid two">
+              <div class="recipe-card"><strong>Overnight oats</strong><br/><span class="muted">Desayuno</span></div>
+              <div class="recipe-card"><strong>Bowl pollo & quinoa</strong><br/><span class="muted">Almuerzo</span></div>
+            </div>
+            <p><a class="link" href="/static/recetas.html">Ver todas las recetas →</a></p>
+          </div>
+          <div class="card">
+            <h3>Rutinas</h3>
+            <p class="muted">Programas claros con progresiones semanales.</p>
+            <ul>
+              <li>Full‑body (3 días)</li>
+              <li>Empuje/Tirón/Pierna</li>
+              <li>En casa sin equipo</li>
+            </ul>
+            <p><a class="link" href="/static/rutinas.html">Ver rutinas →</a></p>
+          </div>
+          <div class="card">
+            <h3>Blog</h3>
+            <p class="muted">Consejos de técnica, nutrición y recuperación.</p>
+            <ul>
+              <li>Empezar en el gym</li>
+              <li>Planifica tus comidas</li>
+              <li>Recuperación y sueño</li>
+            </ul>
+            <p><a class="link" href="/static/blog.html">Ir al blog →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Características principales -->
+    <section class="section alt">
+      <div class="container grid four">
+        <div class="card feature">
+          <div class="feat-icon">🥗</div>
+          <h3>Nutrición simple</h3>
+          <p>Recetas rápidas, macros claros y recomendaciones prácticas.</p>
+        </div>
+        <div class="card feature">
+          <div class="feat-icon">🏃‍♂️</div>
+          <h3>Rutinas progresivas</h3>
+          <p>Programas con progresión y alternativas sin equipo.</p>
+        </div>
+        <div class="card feature">
+          <div class="feat-icon">🧠</div>
+          <h3>Enfoque inteligente</h3>
+          <p>IA que adapta volumen, descanso y técnica a tu nivel.</p>
+        </div>
+        <div class="card feature">
+          <div class="feat-icon">⏱️</div>
+          <h3>Eficiencia</h3>
+          <p>Sesiones pensadas para tu tiempo y objetivos reales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería -->
+    <section class="section">
+      <div class="container">
+        <h2>Galería</h2>
+        <div class="gallery">
+          <img src="https://images.unsplash.com/photo-1571731956672-ac8e8b593d7d?auto=format&fit=crop&w=800&q=80" alt="Levantamiento de pesas" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Carrera en pista" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=800&q=80" alt="Entrenamiento en casa" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?auto=format&fit=crop&w=800&q=80" alt="Estiramientos y movilidad" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1561212044-bac5ef688a49?auto=format&fit=crop&w=800&q=80" alt="Comida saludable" loading="lazy" referrerpolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=800&q=80" alt="Entreno funcional" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="section alt">
+      <div class="container testimonials">
+        <h2>Lo que dicen</h2>
+        <div id="testiCarousel" class="carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <div class="card testimonial">
+                <div class="t-head">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80" alt="Avatar Ana" loading="lazy" referrerpolicy="no-referrer" />
+                  <div>
+                    <strong>Ana G.</strong>
+                    <div class="muted">4 meses • pérdida de grasa</div>
+                  </div>
+                </div>
+                <p>“Bajé 6 kg sin obsesionarme. Las recetas y rutinas se adaptan a mi tiempo.”</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="card testimonial">
+                <div class="t-head">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Avatar Luis" loading="lazy" referrerpolicy="no-referrer" />
+                  <div>
+                    <strong>Luis M.</strong>
+                    <div class="muted">8 meses • fuerza</div>
+                  </div>
+                </div>
+                <p>“Gané fuerza en básicos con progresiones claras. El coach me corrige descansos y volumen.”</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="card testimonial">
+                <div class="t-head">
+                  <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=120&h=120&q=80" alt="Avatar Sofía" loading="lazy" referrerpolicy="no-referrer" />
+                  <div>
+                    <strong>Sofía R.</strong>
+                    <div class="muted">3 meses • en casa</div>
+                  </div>
+                </div>
+                <p>“Entreno en casa con poco equipo y aun así progreso. El chatbot es súper útil.”</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Anterior">‹</button>
+          <button class="carousel-btn next" aria-label="Siguiente">›</button>
+          <div class="carousel-dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <h2>¿Listo para empezar?</h2>
+          <p class="muted">Cuéntame tu objetivo y preparo tu primer plan.</p>
+        </div>
+        <button id="startChatBtn2" class="cta">Abrir chat</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>Nova Fitness no ofrece consejo médico. Ante dolor o lesión, consulta a un profesional.</small>
+    </div>
+  </footer>
+
+  <!-- Botón flotante para abrir el chatbot -->
+  <button id="chatToggle" class="chatbot-toggle" title="Abrir chat">💬</button>
+
+  <!-- Panel del chatbot -->
+  <div id="chatPanel" class="chatbot-panel">
+    <div class="chat-header">
+      <strong>Nova • Coach Fitness</strong>
+      <div class="spacer"></div>
+      <button id="resetBtn" class="small" title="Reiniciar">↺</button>
+      <button id="chatClose" class="small" title="Cerrar">✕</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <form id="form" class="chat-form">
+      <textarea id="input" placeholder="Cuéntame tu objetivo, nivel, tiempo y equipo..." rows="2"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

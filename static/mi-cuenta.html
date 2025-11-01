@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Mi cuenta • Nova Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="/" class="logo" style="text-decoration:none">🏋️‍♀️</a>
+        <span class="title">Nova Fitness</span>
+      </div>
+      <nav class="nav">
+        <a href="/static/programas.html">Programas</a>
+        <a href="/static/recetas.html">Recetas</a>
+        <a href="/static/rutinas.html">Rutinas</a>
+        <a href="/static/tablas.html">Tablas</a>
+        <a href="/static/calculadoras.html">Calculadoras</a>
+        <a href="/static/blog.html">Blog</a>
+        <a href="/static/clases.html">Clases</a>
+        <a href="/static/faq.html">FAQ</a>
+        <a href="/static/contacto.html">Contacto</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" title="Cambiar tema">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Mi cuenta</h1>
+        <p>Edita tu perfil y cambia tu contraseña.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid two">
+        <div class="card">
+          <h3>Perfil</h3>
+          <form id="profileForm" class="contact-form">
+            <label>Nombre
+              <input name="name" required minlength="2" />
+            </label>
+            <label>Email
+              <input name="email" disabled />
+            </label>
+            <button type="submit">Guardar</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Contraseña</h3>
+          <form id="pwdForm" class="contact-form">
+            <label>Actual
+              <input name="current_password" type="password" required minlength="6" />
+            </label>
+            <label>Nueva
+              <input name="new_password" type="password" required minlength="6" />
+            </label>
+            <button type="submit">Cambiar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><small>Nova Fitness</small></div></footer>
+
+  <button id="chatToggle" class="chatbot-toggle" title="Abrir chat">💬</button>
+  <div id="chatPanel" class="chatbot-panel">
+    <div class="chat-header">
+      <strong>Nova • Coach Fitness</strong>
+      <div class="spacer"></div>
+      <button id="resetBtn" class="small" title="Reiniciar">↺</button>
+      <button id="chatClose" class="small" title="Cerrar">✕</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <form id="form" class="chat-form">
+      <textarea id="input" placeholder="Cuéntame tu objetivo, nivel y equipo..." rows="2"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

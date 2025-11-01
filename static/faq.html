@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>FAQ • Nova Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="/" class="logo" style="text-decoration:none">🏋️‍♀️</a>
+        <span class="title">Nova Fitness</span>
+      </div>
+      <nav class="nav">
+        <a href="/static/programas.html">Programas</a>
+        <a href="/static/recetas.html">Recetas</a>
+        <a href="/static/rutinas.html">Rutinas</a>
+        <a href="/static/tablas.html">Tablas</a>
+        <a href="/static/calculadoras.html">Calculadoras</a>
+        <a href="/static/blog.html">Blog</a>
+        <a href="/static/clases.html">Clases</a>
+        <a href="/static/faq.html">FAQ</a>
+        <a href="/static/contacto.html">Contacto</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" title="Cambiar tema">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Preguntas frecuentes</h1>
+        <p>Respuestas rápidas. Si dudas, consulta con un profesional.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid two">
+        <div class="card">
+          <h3>¿Cuántos días entreno?</h3>
+          <p>3–4 para empezar es una gran base; aumenta gradualmente.</p>
+        </div>
+        <div class="card">
+          <h3>¿Qué comer antes de entrenar?</h3>
+          <p>Carbohidrato fácil + algo de proteína; evita grasas altas justo antes.</p>
+        </div>
+        <div class="card">
+          <h3>¿Dolor o lesión?</h3>
+          <p>Para y consulta a un profesional sanitario. Prioriza tu seguridad.</p>
+        </div>
+        <div class="card">
+          <h3>¿Puedo entrenar en casa?</h3>
+          <p>Sí. Sentadillas al aire, flexiones, planchas, zancadas y glúteo puente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <h2>Suscríbete</h2>
+        <form class="subscribe" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+          <input type="email" placeholder="Tu email" required />
+          <button type="submit">Suscribirme</button>
+        </form>
+        <p class="muted">Sin spam. Solo contenido útil.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><small>Nova Fitness</small></div></footer>
+
+  <button id="chatToggle" class="chatbot-toggle" title="Abrir chat">💬</button>
+  <div id="chatPanel" class="chatbot-panel">
+    <div class="chat-header">
+      <strong>Nova • Coach Fitness</strong>
+      <div class="spacer"></div>
+      <button id="resetBtn" class="small" title="Reiniciar">↺</button>
+      <button id="chatClose" class="small" title="Cerrar">✕</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <form id="form" class="chat-form">
+      <textarea id="input" placeholder="Cuéntame tu objetivo, nivel y equipo..." rows="2"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

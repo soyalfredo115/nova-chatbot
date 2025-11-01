@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Rutinas • Nova Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="/" class="logo" style="text-decoration:none">🏋️‍♀️</a>
+        <span class="title">Nova Fitness</span>
+      </div>
+      <nav class="nav">
+        <a href="/static/programas.html">Programas</a>
+        <a href="/static/recetas.html">Recetas</a>
+        <a href="/static/rutinas.html">Rutinas</a>
+        <a href="/static/tablas.html">Tablas</a>
+        <a href="/static/calculadoras.html">Calculadoras</a>
+        <a href="/static/blog.html">Blog</a>
+        <a href="/static/clases.html">Clases</a>
+        <a href="/static/faq.html">FAQ</a>
+        <a href="/static/contacto.html">Contacto</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" title="Cambiar tema">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Rutinas</h1>
+        <p>Programas claros con progresiones semanales y notas de técnica.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Full‑body (3 días)</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr><th>Día</th><th>Ejercicio</th><th>Series x Reps</th><th>Notas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lunes</td><td>Sentadilla</td><td>4 x 6‑8</td><td>RPE 7‑8</td></tr>
+              <tr><td></td><td>Press banca</td><td>4 x 6‑8</td><td>RPE 7‑8</td></tr>
+              <tr><td></td><td>Remo con barra</td><td>3 x 8‑10</td><td>Controlado</td></tr>
+              <tr><td></td><td>Plancha</td><td>3 x 30‑45s</td><td>Core</td></tr>
+              <tr><td>Miércoles</td><td>Peso muerto rumano</td><td>4 x 6‑8</td><td>RPE 7</td></tr>
+              <tr><td></td><td>Press militar</td><td>3 x 8‑10</td><td>RPE 7‑8</td></tr>
+              <tr><td></td><td>Dominadas / Jalón</td><td>3 x 6‑10</td><td>Completo</td></tr>
+              <tr><td></td><td>Farmer walk</td><td>3 x 30m</td><td>Grip</td></tr>
+              <tr><td>Viernes</td><td>Zancadas</td><td>3 x 10‑12</td><td>Alternadas</td></tr>
+              <tr><td></td><td>Press inclinado</td><td>3 x 8‑10</td><td>Tempo 3‑1‑1</td></tr>
+              <tr><td></td><td>Remo mancuerna</td><td>3 x 10‑12</td><td>Por lado</td></tr>
+              <tr><td></td><td>Hip thrust</td><td>3 x 8‑12</td><td>Pausa 1s arriba</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <h2>Empuje/Tirón/Pierna (6 días)</h2>
+        <p class="muted">Para intermedios: volumen moderado, progresión doble (reps y carga).</p>
+        <ul>
+          <li>Empuje: Press banca, Inclinado, Fondos, Laterales, Tríceps.</li>
+          <li>Tirón: Dominadas/Jalón, Remo, Face pull, Curl.</li>
+          <li>Pierna: Sentadilla, Peso muerto rumano, Zancadas, Gemelos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>En casa (sin equipo)</h2>
+        <ul>
+          <li>Sentadilla aire 4x12‑15</li>
+          <li>Flexiones 4x8‑12 (rodillas si es necesario)</li>
+          <li>Puente de glúteo 4x12‑15</li>
+          <li>Superman 3x12</li>
+          <li>Plancha 3x30‑45s</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><small>Nova Fitness</small></div></footer>
+
+  <button id="chatToggle" class="chatbot-toggle" title="Abrir chat">💬</button>
+  <div id="chatPanel" class="chatbot-panel">
+    <div class="chat-header">
+      <strong>Nova • Coach Fitness</strong>
+      <div class="spacer"></div>
+      <button id="resetBtn" class="small" title="Reiniciar">↺</button>
+      <button id="chatClose" class="small" title="Cerrar">✕</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <form id="form" class="chat-form">
+      <textarea id="input" placeholder="Cuéntame tu objetivo, nivel y equipo..." rows="2"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
