@@ -225,7 +225,7 @@ if (profileForm){ const prof=getProfile(); if(!getAccessToken()||!prof){ locatio
 if (pwdForm){ pwdForm.addEventListener('submit', async (e)=>{ e.preventDefault(); const data=Object.fromEntries(new FormData(pwdForm).entries()); try{ await api('/api/me/password-change',{method:'POST', body: JSON.stringify(data)}); showToast('Contraseña cambiada. Inicia sesión de nuevo.','success'); logout(); location.href='/static/login.html'; }catch{ showToast('No pudimos cambiar la contraseña','error'); } }); }
 
 // Mensaje inicial del chat
-addMsg("assistant", "Nova");
+addMsg("assistant", "¡Hola! Soy Nova, tu coach fitness. ¿Cuál es tu objetivo principal (pérdida de grasa, músculo, rendimiento)? Dime tu nivel, tiempo semanal y equipo disponible.");
 
 // Toasts
 function ensureToastRoot(){ let el=document.querySelector('.toast-container'); if(!el){ el=document.createElement('div'); el.className='toast-container'; document.body.appendChild(el);} return el; }
