@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: nova-chatbot
+    name: nova-fitness
     env: docker
     plan: free
     autoDeploy: true
