@@ -37,22 +37,31 @@
     </section>
 
     <section class="section">
-      <div class="container grid">
-        <article class="post-card">
+      <div class="container">
+        <div class="searchbar"><input id="blogSearch" type="search" placeholder="Buscar artículos..." /></div>
+        <div id="blogFilters" class="chips blog">
+          <button class="chip active" data-filter="all">Todos</button>
+          <button class="chip" data-filter="tecnica">Técnica</button>
+          <button class="chip" data-filter="nutricion">Nutrición</button>
+          <button class="chip" data-filter="recuperacion">Recuperación</button>
+        </div>
+        <div class="grid blog">
+        <article class="post-card" data-category="tecnica">
           <h3>Cómo empezar en el gimnasio</h3>
           <p>Domina la técnica básica y progrésala con seguridad.</p>
-          <a class="link" href="#" onclick="return false;">Leer más</a>
+          <a class="link" href="/static/blog/como-empezar-gym.html">Leer más</a>
         </article>
-        <article class="post-card">
+        <article class="post-card" data-category="nutricion">
           <h3>Planificar tus comidas sin complicarte</h3>
           <p>Batch cooking, compras inteligentes y combos equilibrados.</p>
-          <a class="link" href="#" onclick="return false;">Leer más</a>
+          <a class="link" href="/static/blog/planificar-comidas.html">Leer más</a>
         </article>
-        <article class="post-card">
+        <article class="post-card" data-category="recuperacion">
           <h3>Recuperación: el secreto del progreso</h3>
           <p>Sueño, descanso activo y manejo del estrés.</p>
-          <a class="link" href="#" onclick="return false;">Leer más</a>
+          <a class="link" href="/static/blog/recuperacion-progreso.html">Leer más</a>
         </article>
+        </div>
       </div>
     </section>
   </main>

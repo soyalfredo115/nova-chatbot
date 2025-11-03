@@ -11,6 +11,8 @@ const themeToggle = document.getElementById("themeToggle");
 const recipeFilters = document.getElementById("recipeFilters");
 const recipeSearch = document.getElementById("recipeSearch");
 const recipePager = document.getElementById("recipePager");
+const blogFilters = document.getElementById("blogFilters");
+const blogSearch = document.getElementById("blogSearch");
 const bmiForm = document.getElementById('bmiForm');
 const tdeeForm = document.getElementById('tdeeForm');
 const contactForm = document.getElementById('contactForm');
@@ -149,6 +151,37 @@ function updateRecipes(){ const cards=getRecipeCards(); const filtered=cards.fil
 if (recipeFilters) recipeFilters.addEventListener('click', (e)=>{ const btn=e.target.closest('.chip'); if(!btn) return; recipeState.filter=btn.dataset.filter; recipeState.page=1; [...recipeFilters.querySelectorAll('.chip')].forEach(c=>c.classList.toggle('active', c===btn)); updateRecipes(); });
 if (recipeSearch) recipeSearch.addEventListener('input', ()=>{ recipeState.query=recipeSearch.value.trim(); recipeState.page=1; updateRecipes(); });
 if (document.querySelector('.recipe-card')) updateRecipes();
+
+// Recetas: botón aleatorio y recuentos en chips
+const randomBtn = document.getElementById('randomRecipe');
+if (randomBtn){
+  randomBtn.addEventListener('click', ()=>{
+    const links = Array.from(document.querySelectorAll('.recipe-card a[href]'));
+    if (!links.length) return;
+    const idx = Math.floor(Math.random()*links.length);
+    window.location.href = links[idx].getAttribute('href');
+  });
+}
+// Añadir contadores a chips
+if (recipeFilters){
+  const counts = { all: document.querySelectorAll('.recipe-card').length };
+  document.querySelectorAll('.recipe-card').forEach(card=>{
+    const c = card.dataset.category || 'other';
+    counts[c] = (counts[c]||0) + 1;
+  });
+  recipeFilters.querySelectorAll('.chip').forEach(ch=>{
+    const f = ch.dataset.filter;
+    if (f && counts[f]!=null){ ch.textContent = ch.textContent.replace(/\s*\(.*\)$/, '') + ` (${counts[f]})`; }
+  });
+}
+
+// Blog: filtro + búsqueda
+const blogState = { filter: 'all', query: '' };
+function getBlogCards(){ return Array.from(document.querySelectorAll('.post-card')); }
+function matchesBlog(card, state){ const cat = card.dataset.category||''; const text = (card.textContent||'').toLowerCase(); const q = state.query.toLowerCase(); const passF = (state.filter==='all')||(cat===state.filter); const passQ = !q || text.includes(q); return passF && passQ; }
+function updateBlog(){ const cards=getBlogCards(); const filtered=cards.filter(c=>matchesBlog(c, blogState)); cards.forEach(c=>{ c.style.display = filtered.includes(c) ? '' : 'none'; }); }
+if (blogFilters){ blogFilters.addEventListener('click', (e)=>{ const btn=e.target.closest('.chip'); if(!btn) return; blogState.filter = btn.dataset.filter; [...blogFilters.querySelectorAll('.chip')].forEach(c=>c.classList.toggle('active', c===btn)); updateBlog(); }); }
+if (blogSearch){ blogSearch.addEventListener('input', ()=>{ blogState.query = blogSearch.value.trim(); updateBlog(); }); }
 
 // Suscripción
 document.querySelectorAll('form.subscribe').forEach((f)=>{ f.addEventListener('submit', async (ev)=>{ ev.preventDefault(); const email=f.querySelector('input[type="email"]').value.trim(); const nameEl=f.querySelector('input[name="name"]'); const name=nameEl?nameEl.value.trim():undefined; try{ const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ email, name })}); if(!res.ok) throw new Error(); showToast('¡Gracias por suscribirte!','success'); f.reset(); }catch{ showToast('Error al suscribirte.','error'); } }); });

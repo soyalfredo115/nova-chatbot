@@ -70,14 +70,31 @@ body { font-family: system-ui, -apple-system, Roboto, Segoe UI, Arial; margin: 0
 .searchbar input { width: 100%; border: 1px solid var(--border); background: var(--panel-2); color: var(--text); border-radius: 10px; padding: 10px; }
 .recipes .recipe-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
 .recipes h3 { margin: 0 0 6px; }
+.recipes .recipe-card a { color: inherit; text-decoration: none; display: block; }
+.recipe-thumb { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 10px; }
+.recipes .recipe-card:hover { transform: translateY(-2px); transition: transform .15s ease; }
 .pager { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
 .pager button { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 10px; cursor: pointer; }
 .pager button.active { background: var(--brand); color: #071410; border-color: transparent; }
+
+/* Nutrición */
+.nutri-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.nutri-table th, .nutri-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.nutri-table th { background: var(--panel-2); }
+
+/* Acciones recetas */
+.actions { display: flex; gap: 10px; align-items: center; margin: 10px 0 6px; }
+.actions .btn { background: var(--brand); color: #071410; border: 0; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+.actions .btn:hover { filter: brightness(1.05); }
 
 /* Blog */
 .blog .post-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
 .blog .post-card .link { color: var(--brand-2); text-decoration: none; }
 .blog .post-card .link:hover { text-decoration: underline; }
+.blog .post-card:hover { transform: translateY(-2px); transition: transform .15s ease; }
+.blog .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.blog .chip { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); padding:6px 10px; border-radius:999px; cursor:pointer; }
+.blog .chip.active, .blog .chip:hover { background: var(--brand); color:#071410; border-color: transparent; }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 16px 0; color: var(--muted); }
@@ -118,6 +135,13 @@ button:hover { opacity: 0.9; }
 
 html { scroll-behavior: smooth; }
 
+/* Breadcrumbs */
+.breadcrumbs { font-size: 14px; color: var(--muted); display:flex; align-items:center; gap:8px; padding:8px 0; }
+.breadcrumbs a { color: var(--muted); text-decoration: none; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.back-link { margin-left:auto; background: var(--panel-2); color: var(--text); border:1px solid var(--border); padding:6px 10px; border-radius: 10px; text-decoration:none; }
+.back-link:hover { filter: brightness(1.06); }
+
 /* Tablas */
 .table-wrap { overflow-x: auto; }
 .table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
@@ -134,9 +158,9 @@ html { scroll-behavior: smooth; }
 .calc-result { margin-top: 8px; }
 
 /* Inputs pro */
-input, select, textarea { transition: border-color .15s ease, background .15s ease, box-shadow .15s ease; }
+input, select, textarea { transition: border-color .15s ease, background .15s ease, box-shadow .15s ease; background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 12px; }
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brand-2); box-shadow: 0 0 0 3px rgba(30,136,229,.2); }
-input, select { height: 40px; }
+input, select { height: 44px; }
 label { font-size: 14px; color: var(--muted); }
 
 /* Auth (login / registro) */
