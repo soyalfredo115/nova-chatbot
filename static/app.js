@@ -176,12 +176,99 @@ if (recipeFilters){
 }
 
 // Blog: filtro + búsqueda
-const blogState = { filter: 'all', query: '' };
+const blogState = { filter: 'all', query: '', page: 1, perPage: 6 };
+const blogPager = document.getElementById('blogPager');
 function getBlogCards(){ return Array.from(document.querySelectorAll('.post-card')); }
 function matchesBlog(card, state){ const cat = card.dataset.category||''; const text = (card.textContent||'').toLowerCase(); const q = state.query.toLowerCase(); const passF = (state.filter==='all')||(cat===state.filter); const passQ = !q || text.includes(q); return passF && passQ; }
-function updateBlog(){ const cards=getBlogCards(); const filtered=cards.filter(c=>matchesBlog(c, blogState)); cards.forEach(c=>{ c.style.display = filtered.includes(c) ? '' : 'none'; }); }
+function renderBlogPager(total){ if(!blogPager) return; const pages=Math.max(1, Math.ceil(total/blogState.perPage)); blogPager.innerHTML=''; for(let p=1;p<=pages;p++){ const b=document.createElement('button'); b.textContent=String(p); if(p===blogState.page) b.classList.add('active'); b.addEventListener('click', ()=>{ blogState.page=p; updateBlog(); }); blogPager.appendChild(b);} }
+function updateBlog(){ const cards=getBlogCards(); const filtered=cards.filter(c=>matchesBlog(c, blogState)); const start=(blogState.page-1)*blogState.perPage; const end=start+blogState.perPage; filtered.forEach((c,i)=>{ c.style.display=(i>=start&&i<end)?'':'none'; }); cards.filter(c=>!filtered.includes(c)).forEach(c=>c.style.display='none'); renderBlogPager(filtered.length); }
 if (blogFilters){ blogFilters.addEventListener('click', (e)=>{ const btn=e.target.closest('.chip'); if(!btn) return; blogState.filter = btn.dataset.filter; [...blogFilters.querySelectorAll('.chip')].forEach(c=>c.classList.toggle('active', c===btn)); updateBlog(); }); }
 if (blogSearch){ blogSearch.addEventListener('input', ()=>{ blogState.query = blogSearch.value.trim(); updateBlog(); }); }
+if (document.querySelector('.post-card')) updateBlog();
+
+// Recipe meta: time/difficulty badges via map
+const recipeMeta = {
+  '/static/recetas/overnight-oats.html': { time:'5 min', difficulty:'Fácil' },
+  '/static/recetas/tostada-huevo.html': { time:'10 min', difficulty:'Fácil' },
+  '/static/recetas/yogur-nueces.html': { time:'5 min', difficulty:'Muy fácil' },
+  '/static/recetas/bowl-pollo-quinoa.html': { time:'25 min', difficulty:'Media' },
+  '/static/recetas/tacos-pavo.html': { time:'20 min', difficulty:'Fácil' },
+  '/static/recetas/ensalada-garbanzos.html': { time:'12 min', difficulty:'Fácil' },
+  '/static/recetas/salmon-verduras.html': { time:'20 min', difficulty:'Fácil' },
+  '/static/recetas/tofu-salteado.html': { time:'15 min', difficulty:'Fácil' },
+  '/static/recetas/merluza-horno.html': { time:'15 min', difficulty:'Fácil' },
+  '/static/recetas/batido-whey.html': { time:'5 min', difficulty:'Muy fácil' },
+  '/static/recetas/tortita-avena.html': { time:'15 min', difficulty:'Fácil' },
+  '/static/recetas/pasta-integral-atun.html': { time:'20 min', difficulty:'Fácil' },
+  '/static/recetas/chia-pudding.html': { time:'5 min (+reposo)', difficulty:'Muy fácil' },
+  '/static/recetas/arroz-integral-verduras.html': { time:'20 min', difficulty:'Fácil' },
+  '/static/recetas/crema-calabaza.html': { time:'30 min', difficulty:'Fácil' },
+  '/static/recetas/hummus-palitos.html': { time:'10 min', difficulty:'Muy fácil' },
+  '/static/recetas/revuelto-claras-verduras.html': { time:'12 min', difficulty:'Fácil' },
+  '/static/recetas/wrap-integral-atun.html': { time:'10 min', difficulty:'Muy fácil' },
+  '/static/recetas/batido-verde.html': { time:'5 min', difficulty:'Muy fácil' },
+};
+
+function enhanceRecipeCards(){
+  document.querySelectorAll('.recipe-card').forEach(card=>{
+    const a = card.querySelector('a[href]'); if(!a) return; const href = a.getAttribute('href'); const meta = recipeMeta[href];
+    if (!meta) return; let badges = card.querySelector('.badges'); if(!badges){ badges=document.createElement('div'); badges.className='badges'; card.appendChild(badges);} 
+    const t=document.createElement('span'); t.textContent = meta.time; badges.appendChild(t);
+    const d=document.createElement('span'); d.textContent = meta.difficulty; badges.appendChild(d);
+  });
+}
+if (document.querySelector('.recipe-card')) enhanceRecipeCards();
+
+function enhanceRecipeDetail(){
+  const path = location.pathname;
+  const meta = recipeMeta[path];
+  if (!meta) return;
+  const hero = document.querySelector('.hero-inner'); if(!hero) return;
+  const div = document.createElement('div'); div.className = 'badges';
+  const t=document.createElement('span'); t.textContent = meta.time;
+  const d=document.createElement('span'); d.textContent = meta.difficulty;
+  div.appendChild(t); div.appendChild(d);
+  hero.appendChild(div);
+}
+enhanceRecipeDetail();
+
+// Nutrition totals based on servings
+function buildNutritionTotals(){
+  const table = document.querySelector('.nutri-table'); if(!table) return;
+  const rows = Array.from(table.querySelectorAll('tbody tr'));
+  const data = rows.map(r=>{ const k=r.children[0].textContent.trim(); const v=r.children[1].textContent.trim(); const m=v.match(/([0-9]+(?:\.[0-9]+)?)\s*(kcal|g)/i); return m? {k, val: parseFloat(m[1]), unit: m[2]}:null; }).filter(Boolean);
+  const wrap = document.createElement('div'); wrap.className='card';
+  const label = document.createElement('label'); label.textContent = 'Raciones'; label.style.display='block'; label.style.marginBottom='6px';
+  const inp = document.createElement('input'); inp.type='number'; inp.min='1'; inp.value='1'; inp.style.width='120px';
+  const totals = document.createElement('table'); totals.className='nutri-table'; totals.innerHTML = '<thead><tr><th>Totales</th><th>Cantidad</th></tr></thead><tbody></tbody>';
+  function render(){ const n=parseFloat(inp.value)||1; const tbody=totals.querySelector('tbody'); tbody.innerHTML=''; data.forEach(d=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${d.k}</td><td>${(d.val*n).toFixed(0)} ${d.unit}</td>`; tbody.appendChild(tr); }); }
+  inp.addEventListener('input', render); render();
+  const container = table.closest('.card')?.parentElement || table.parentElement;
+  wrap.appendChild(label); wrap.appendChild(inp); wrap.appendChild(totals);
+  container.appendChild(wrap);
+}
+buildNutritionTotals();
+
+// Global Search overlay
+let searchIndex = null; let overlay=null; let inputEl=null; let resultsEl=null;
+function ensureSearch(){
+  if (overlay) return;
+  overlay = document.createElement('div'); overlay.className='search-overlay';
+  overlay.innerHTML = `<div class="search-panel"><div class="search-box"><span>🔎</span><input id="globalsearch" placeholder="Busca recetas o artículos... (Ctrl+K)" /><button class="search-close" aria-label="Cerrar">✕</button></div><div class="search-results"></div></div>`;
+  document.body.appendChild(overlay);
+  inputEl = overlay.querySelector('#globalsearch');
+  resultsEl = overlay.querySelector('.search-results');
+  overlay.querySelector('.search-close').addEventListener('click', ()=> hideSearch());
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) hideSearch(); });
+  inputEl.addEventListener('input', ()=> renderResults(inputEl.value.trim()));
+}
+async function loadIndex(){ if (searchIndex) return searchIndex; const res=await fetch('/static/data/search-index.json'); searchIndex = await res.json(); return searchIndex; }
+function showSearch(){ ensureSearch(); overlay.classList.add('open'); inputEl.focus(); }
+function hideSearch(){ if(overlay) overlay.classList.remove('open'); }
+function renderResults(q){ q=q.toLowerCase(); const data=(searchIndex||[]).filter(it=>!q || it.title.toLowerCase().includes(q) || it.category.toLowerCase().includes(q)); resultsEl.innerHTML=''; data.slice(0,50).forEach(it=>{ const a=document.createElement('a'); a.className='search-item'; a.href=it.url; a.innerHTML=`<img class="thumb" src="${it.thumb}" alt=""><div><div><strong>${it.title}</strong></div><div class="tag">${it.type} • ${it.category}</div></div><div>→</div>`; resultsEl.appendChild(a); }); }
+
+// Add search button to header
+(function initGlobalSearch(){ const header=document.querySelector('.header-inner'); if(!header) return; const btn=document.createElement('button'); btn.className='menu-toggle'; btn.textContent='🔎'; header.appendChild(btn); btn.addEventListener('click', async ()=>{ await loadIndex(); showSearch(); renderResults(''); }); document.addEventListener('keydown', async (e)=>{ if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); await loadIndex(); showSearch(); renderResults(''); } if(e.key==='Escape') hideSearch(); }); })();
 
 // Suscripción
 document.querySelectorAll('form.subscribe').forEach((f)=>{ f.addEventListener('submit', async (ev)=>{ ev.preventDefault(); const email=f.querySelector('input[type="email"]').value.trim(); const nameEl=f.querySelector('input[name="name"]'); const name=nameEl?nameEl.value.trim():undefined; try{ const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ email, name })}); if(!res.ok) throw new Error(); showToast('¡Gracias por suscribirte!','success'); f.reset(); }catch{ showToast('Error al suscribirte.','error'); } }); });
